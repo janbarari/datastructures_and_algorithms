@@ -11,6 +11,31 @@ Is a measure of the time required to run an algorithm as the input size increase
 ## What is the Space Complexity?
 Is a measure of the resource required for the algorithm to manipulate the input data.
 
+## What is Big O Notation?
+Is used to represent the general form of time and space complexity.
+
+**Time & Space Complexity** are high-level measure of scalability. They don't measure the actual speed of the algorithm itself.
+
+For small data sets, **Time Complexity** is usually irrelevant.
+
+![](chart.png)
+
+As you can see in above picture we have some types of **Big O Notation**
+- **O(N!)** means **_Factorial Time_**
+- **O(2^N)** means **_Exponential Time_**
+- **O(N^2)** means **_Quadratic Time_**
+- **O(N log N)** means **_Quasilinear Time_**
+- **O(N)** means **_Linear Time_**
+- **O(Log N)** means **_Logarithmic Time_**
+- **O(1)** means **_Constant Time_**
+
+The **Green** color represent that the algorithm speed is good when size of the data increasing
+
+The **Red** color represent that the algorithm speed is ad when size of the data increasing
+
+
+
+
 ## Data Structures
 - 1
 - 2
