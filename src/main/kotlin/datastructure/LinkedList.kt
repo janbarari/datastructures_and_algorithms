@@ -10,13 +10,57 @@ class Node<T>(var value: T, var next: Node<T>? =  null) {
     }
 }
 
-class LinkedList<T> {
+class LinkedListIterator<T>(
+    private val list: LinkedList<T>
+): Iterator<T>, MutableIterator<T> {
+
+    private var index = 0
+    private var lastNode: Node<T>? = null
+
+    override fun hasNext(): Boolean {
+        return index < list.size
+    }
+
+    override fun next(): T {
+        // Check there are still elements to return. if there aren't then throw an exception
+        if (index >= list.size) throw IndexOutOfBoundsException()
+        // If this is the first iteration there is no lastNode set, so take the first node of the list,
+        // after the first iteration, get the next property of the last node to find the next one.
+        lastNode = if (index == 0) {
+            list.nodeAt(0)
+        } else {
+            lastNode?.next
+        }
+        // Since the lastNode property was updated, try to update index too
+        index++
+        return lastNode!!.value
+    }
+
+    override fun remove() {
+        // The simplest case is when the beginning of the list. Using pop() will do the trick.
+        if (index == 1) {
+            list.pop()
+        } else {
+            // If the iterator is somewhere inside the list, its need to find the previous node.
+            // That's the only way to remove items from a linked list.
+            val prevNode = list.nodeAt(index - 2) ?: return
+            // The iterator needs to step back so that next() returns the correct method the next time.
+            // This means reassigning the lastNode and decreasing the index.
+            list.removeAfter(prevNode)
+            lastNode = prevNode
+        }
+        index--
+    }
+}
+
+class LinkedList<T>: Iterable<T>, Collection<T>, MutableIterable<T>, MutableCollection<T> {
 
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
-    private var size = 0
+    override var size = 0
+        private set
 
-    fun isEmpty(): Boolean {
+    override fun isEmpty(): Boolean {
         return size == 0
     }
 
@@ -95,21 +139,147 @@ class LinkedList<T> {
         return currentNode
     }
 
-}
-
-fun main() {
-    println("LinkedList")
-
-    val list = LinkedList<Int>()
-    list.push(3)
-    list.push(2)
-    list.push(1)
-
-    println("Before inserting: $list")
-    var middleNode = list.nodeAt(1)!!
-    for (i in 1..3) {
-        middleNode = list.insert(-1 * i, middleNode)
+    /**
+     * Removes the value at the front of the list
+     * note: Once the method finished the garbage collector will remove the first value from the memory
+     * Time complexity equals O(1)
+     */
+    fun pop(): T? {
+        if(isEmpty().not()) size--
+        val result = head?.value
+        head = head?.next
+        if (isEmpty()) {
+            tail = null
+        }
+        return result
     }
-    println("After inserting: $list")
+
+    /**
+     * Removes the value at the end of the list
+     * Time complexity equals O(n)
+     */
+    fun removeLast(): T? {
+        // if head is null, there is nothing to remove, return null
+        val head = head ?: return null
+        // if the list only consists of one node, removeLast is functionally equivalent to pop. Since pop will handle
+        // updating the head and tail references, so delegate this work to pop method
+        if (head.next == null) return pop()
+        // update the size of the list cause it's going to remove a node
+        size--
+        // looking for the next node until current.next is null. it means that the current is the last node of the list
+        var prev = head
+        var current = head
+        var next = current.next
+        while(next != null) {
+            prev = current
+            current = next
+            next = current.next
+        }
+        // since current is the last node, disconnect it using the prev.next reference, and update the tail
+        prev.next = null
+        tail = prev
+        return current.value
+    }
+
+    /**
+     * Removes a value anywhere in the list
+     * Time complexity equals O(1)
+     */
+    fun removeAfter(node: Node<T>): T? {
+        val result = node.next?.value
+
+        if (node.next == tail) {
+            tail = node
+        }
+
+        if (node.next != null) {
+            size--
+        }
+
+        node.next = node.next?.next
+        return result
+    }
+
+    /**
+     * Kotlin Iterable interface
+     */
+    override fun iterator(): MutableIterator<T> {
+        return LinkedListIterator(this)
+    }
+
+    /**
+     * Kotlin collection interface
+     * This method iterates through all elements of the list if needed
+     * Time complexity equals O(n)
+     */
+    override fun contains(element: T): Boolean {
+        for (item in this) {
+            if (item == element) return true
+        }
+        return false
+    }
+
+    /**
+     * It's just works with a collection of elements
+     * Time complexity equals O(n^2)
+     */
+    override fun containsAll(elements: Collection<T>): Boolean {
+        for (searched in elements) {
+            if (!contains(searched)) return false
+        }
+        return true
+    }
+
+    override fun add(element: T): Boolean {
+        append(element)
+        return true
+    }
+
+    override fun addAll(elements: Collection<T>): Boolean {
+        for (element in elements) {
+            append(element)
+        }
+        return true
+    }
+
+    override fun clear() {
+        head = null
+        tail = null
+        size = 0
+    }
+
+    override fun remove(element: T): Boolean {
+        val iterator = iterator()
+        while(iterator.hasNext()) {
+            val item = iterator.next()
+
+            if (item == element) {
+                iterator.remove()
+                return true
+            }
+        }
+        return false
+    }
+
+    override fun removeAll(elements: Collection<T>): Boolean {
+        var result = false
+        for(item in elements) {
+            result = remove(item) || result
+        }
+        return result
+    }
+
+    override fun retainAll(elements: Collection<T>): Boolean {
+        var result = false
+        val iterator = this.iterator()
+        while (iterator.hasNext()) {
+            val item = iterator.next()
+            if (!elements.contains(item)) {
+                iterator.remove()
+                result = true
+            }
+        }
+        return result
+    }
 
 }
