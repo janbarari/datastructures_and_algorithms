@@ -30,6 +30,7 @@ class LinkedList<T> {
 
     /**
      * Adds a value at the front of the list
+     * Time complexity equals O(1)
      */
     fun push(value: T): LinkedList<T> {
         head = Node(value, head)
@@ -42,6 +43,7 @@ class LinkedList<T> {
 
     /**
      * Adds a value at the end of the list
+     * Time complexity equals O(1)
      */
     fun append(value: T) {
         // if the list is empty, It's need to update both head and tail to the new node,
@@ -60,13 +62,26 @@ class LinkedList<T> {
 
     /**
      * Adds a value after a particular node of the list
+     * Time complexity equals O(1)
      */
-    fun insert(value: T) {
-
+    fun insert(value: T, afterNode: Node<T>): Node<T> {
+        // In the case where this method is called with the tail node, call the functionality equivalent append method.
+        // This takes care of updating tail.
+        if (tail == afterNode) {
+            append(value)
+            return tail!!
+        }
+        // Otherwise, create a new node and link its next property to the next node of the list
+        val newNode = Node(value, afterNode.next)
+        // Reassign the next value of the specific node to link it to the new node that you just created.
+        afterNode.next = newNode
+        size++
+        return newNode
     }
 
     /**
      * Find and get a particular node of the list
+     * Time complexity equals O(i) which i is the given index as input parameter
      */
     fun nodeAt(index: Int): Node<T>? {
         // Create a new reference to head and keep track if the current number if traversals.
@@ -86,10 +101,15 @@ fun main() {
     println("LinkedList")
 
     val list = LinkedList<Int>()
-    list.append(1)
-    list.append(2)
-    list.append(3)
+    list.push(3)
+    list.push(2)
+    list.push(1)
 
-    println(list)
+    println("Before inserting: $list")
+    var middleNode = list.nodeAt(1)!!
+    for (i in 1..3) {
+        middleNode = list.insert(-1 * i, middleNode)
+    }
+    println("After inserting: $list")
 
 }
