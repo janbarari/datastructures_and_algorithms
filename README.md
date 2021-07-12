@@ -20,7 +20,7 @@ For small data sets, **Time Complexity** is usually irrelevant.
 
 ![](chart.png)
 
-As you can see in above picture we have some types of **Big O Notation**
+As you can see in above picture we have some types of **Big O Notation**:
 - **O(N!)** means **_Factorial Time_**
 - **O(2^N)** means **_Exponential Time_**
 - **O(N^2)** means **_Quadratic Time_**
@@ -33,19 +33,43 @@ The **Green** color represent that the algorithm speed is good when size of the 
 
 The **Red** color represent that the algorithm speed is ad when size of the data increasing
 
+## Remember this chart in your decisions
 
+![](chart2.png)
 
 
 ## Data Structures
-- 1
-- 2
-- 3
-- 4
+- LinkedList
+- Array  
+- Stack
+- Queue
+- Tree
+- Binary Tree
+- Binary Search Tree
+- AVL Tree
+- Trie
+- Heap
+- Priority Queue
+- Hashtable
+- Set
+- Graph
 
 ## Algorithms
-- 1
-- 2
-- 3
+- Linear Search
+- Binary Search
+- Quicksort
+- Mergesort
+- Timsort
+- Heapsort
+- Bubbl sort
+- Insertion sort
+- Tree sort
+- Selection sort
+- Bucket sort
+- Radix sort
+- Counting sort
+- Cubesort
+- Shell sort
 
 ## Sponsor
 ### If you like and use it, please tap the Star(⭐️) button at the above.
