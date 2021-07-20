@@ -5,13 +5,13 @@ Let's dive into **Time Complexity**, **Space Complexity**, **Big O Notation**, *
 
 ![](image.png)
 
-## What is the Time Complexity?
+## Time Complexity
 Is a measure of the time required to run an algorithm as the input size increases.
 
-## What is the Space Complexity?
+## Space Complexity
 Is a measure of the resource required for the algorithm to manipulate the input data.
 
-## What is Big O Notation?
+## Big O Notation
 Is used to represent the general form of time and space complexity.
 
 **Time & Space Complexity** are high-level measure of scalability. They don't measure the actual speed of the algorithm itself.
