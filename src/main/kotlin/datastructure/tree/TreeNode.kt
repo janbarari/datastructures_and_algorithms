@@ -1,7 +1,6 @@
-package datastructure
+package datastructure.tree
 
 import list.ArrayListQueue
-import java.util.*
 
 /**
  * The tree is a data structure of profound importance. It's used to tackle many recurring challenges
@@ -49,9 +48,9 @@ class TreeNode<T>(val value: T) {
     }
 
     /**
-     * Search with Level-order
+     * Search by Level-order
      */
-    fun searchWithLevelOrder(value: T): TreeNode<T>? {
+    fun searchByLevelOrder(value: T): TreeNode<T>? {
         var result: TreeNode<T>? = null
         forEachLevelOrder {
             if (it.value == value) {
@@ -62,9 +61,9 @@ class TreeNode<T>(val value: T) {
     }
 
     /**
-     * Search with Depth-First
+     * Search by Depth-First
      */
-    fun searchWithDepthFirst(value: T): TreeNode<T>? {
+    fun searchByDepthFirst(value: T): TreeNode<T>? {
         var result: TreeNode<T>? = null
         forEachDepthFirst {
             if (it.value == value) {
@@ -79,9 +78,9 @@ class TreeNode<T>(val value: T) {
      * will print new line
      * Time complexity is O(n)
      */
-    fun printEachLevel() {
+    fun printLevels() {
         val queue = ArrayListQueue<TreeNode<T>>()
-        var nodeLeftInCurrentLevel = 0
+        var nodeLeftInCurrentLevel: Int
         queue.enqueue(this)
         while(queue.isEmpty.not()) {
             nodeLeftInCurrentLevel = queue.count
@@ -98,8 +97,6 @@ class TreeNode<T>(val value: T) {
             println()
         }
     }
-
-
 
 }
 

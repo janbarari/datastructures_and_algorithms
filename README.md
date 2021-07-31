@@ -71,6 +71,20 @@ The **Red** color represent that the algorithm speed is ad when size of the data
 - Cubesort
 - Shell sort
 
+## Tree
+It's a data structure of profound importance. It's used to tackle many recurring challenges in software development. 
+
+such as: 
+ - Representing hierarchical relationships 
+ - Managing sorted data
+ - Facilitating fast lookup operations
+
+Just like **LinkedList** the trees consists Node but the Node contains two child nodes.
+
+The topmost node in the tree is called the **root** of the tree. this node is the only node that has not parent.
+
+A node that has no child is called as **Leaf**.
+
 ## Sponsor
 ### If you like and use it, please tap the Star(⭐️) button at the above.
 This source code is free for all; hence, it's not profitable. You can make me happy by donating me :)

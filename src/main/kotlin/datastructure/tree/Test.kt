@@ -1,8 +1,5 @@
 package datastructure.tree
 
-import datastructure.TreeNode
-import list.ArrayListQueue
-
 fun makeBeverageTree(): TreeNode<String> {
     val tree = TreeNode("Beverages")
 
@@ -65,7 +62,7 @@ fun challengeOne() {
         )
     }
 
-    root.printEachLevel()
+    root.printByLevelOrder()
 }
 
 fun main() {
