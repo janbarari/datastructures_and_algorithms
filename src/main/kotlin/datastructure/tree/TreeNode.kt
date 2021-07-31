@@ -74,75 +74,33 @@ class TreeNode<T>(val value: T) {
         return result
     }
 
+    /**
+     * This function will count referenced nodes count inside each node and once iteration for each level is done
+     * will print new line
+     * Time complexity is O(n)
+     */
+    fun printEachLevel() {
+        val queue = ArrayListQueue<TreeNode<T>>()
+        var nodeLeftInCurrentLevel = 0
+        queue.enqueue(this)
+        while(queue.isEmpty.not()) {
+            nodeLeftInCurrentLevel = queue.count
+            while (nodeLeftInCurrentLevel > 0) {
+                val node = queue.dequeue()
+                node?.let {
+                    print("${node.value} ")
+                    node.children.forEach {
+                        queue.enqueue(it)
+                    }
+                    nodeLeftInCurrentLevel--
+                } ?: break
+            }
+            println()
+        }
+    }
+
+
+
 }
 
 typealias Visitor<T> = (TreeNode<T>) -> Unit
-
-fun makeBeverageTree(): TreeNode<String> {
-    val tree = TreeNode("Beverages")
-
-    val hot = TreeNode("hot")
-    val cold = TreeNode("cold")
-
-    val tea = TreeNode("tea")
-    val coffee = TreeNode("coffee")
-    val chocolate = TreeNode("cocoa")
-
-    val blackTea = TreeNode("black")
-    val greenTea = TreeNode("green")
-    val chaiTea = TreeNode("chai")
-
-    val soda = TreeNode("soda")
-    val milk = TreeNode("milk")
-
-    val gingerAle = TreeNode("ginger ale")
-    val bitterLemon = TreeNode("bitter lemon")
-
-    tree.add(hot)
-    tree.add(cold)
-
-    hot.add(tea)
-    hot.add(coffee)
-    hot.add(chocolate)
-
-    cold.add(soda)
-    cold.add(milk)
-
-    tea.add(blackTea)
-    tea.add(greenTea)
-    tea.add(chaiTea)
-
-    soda.add(gingerAle)
-    soda.add(bitterLemon)
-
-    return tree
-}
-
-fun main() {
-    val tree = makeBeverageTree()
-
-    println("Please enter the value:")
-    val query: String = readLine()!!
-
-    var lfTimestamp: Long =  System.nanoTime()
-    tree.searchWithLevelOrder(query)?.let {
-        lfTimestamp = System.nanoTime() - lfTimestamp
-        println("Found with Level-first: ${it.value}, nt: $lfTimestamp")
-    } ?: println("Couldn't find: $query")
-
-    var dfTimestamp: Long = System.nanoTime()
-    tree.searchWithDepthFirst(query)?.let {
-        dfTimestamp = System.nanoTime() - dfTimestamp
-        println("Found with Depth-first: ${it.value}, nt: $dfTimestamp")
-    } ?: println("Couldn't find: $query")
-
-    if (dfTimestamp < lfTimestamp) {
-        println("Winner algorithm: Depth-first")
-    } else {
-        println("Winner algorithm: Level-first")
-    }
-}
-
-private fun calculateTheDiff(min: Long, max: Long): Float {
-    return max / (max/min).toFloat()
-}
