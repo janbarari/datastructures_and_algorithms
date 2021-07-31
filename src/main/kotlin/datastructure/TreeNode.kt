@@ -121,15 +121,28 @@ fun makeBeverageTree(): TreeNode<String> {
 fun main() {
     val tree = makeBeverageTree()
 
-    var timestamp = System.currentTimeMillis()
-    tree.searchWithDepthFirst("milk")?.let {
-        val durationInMS = System.currentTimeMillis() - timestamp
-        println("Found node: ${it.value}, ms: $durationInMS")
-    }
+    println("Please enter the value:")
+    val query: String = readLine()!!
 
-    timestamp =  System.currentTimeMillis()
-    tree.searchWithLevelOrder("soda")?.let {
-        val durationInMS = System.currentTimeMillis()
-        println("Found node: ${it.value}")
+    var lfTimestamp: Long =  System.nanoTime()
+    tree.searchWithLevelOrder(query)?.let {
+        lfTimestamp = System.nanoTime() - lfTimestamp
+        println("Found with Level-first: ${it.value}, nt: $lfTimestamp")
+    } ?: println("Couldn't find: $query")
+
+    var dfTimestamp: Long = System.nanoTime()
+    tree.searchWithDepthFirst(query)?.let {
+        dfTimestamp = System.nanoTime() - dfTimestamp
+        println("Found with Depth-first: ${it.value}, nt: $dfTimestamp")
+    } ?: println("Couldn't find: $query")
+
+    if (dfTimestamp < lfTimestamp) {
+        println("Winner algorithm: Depth-first")
+    } else {
+        println("Winner algorithm: Level-first")
     }
+}
+
+private fun calculateTheDiff(min: Long, max: Long): Float {
+    return max / (max/min).toFloat()
 }
