@@ -93,6 +93,22 @@ Cons:
 - As soon as you move from one node to another, you can't go back cause there is only has reference to the next node.
 - In LinkedList the elements aren't in contiguous blocks of memory. This could lead to more cache misses, which increase the access time.
 
+## Stack
+![](stack.jpeg) 
+
+Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+
+The main goal of building a stack is to enforce how you access your data.
+
+Stack has only two operation:
+- **Push**: Adding an element to the top of the stack
+- **Pop**: Removing the top element of the stack.
+
+Real world examples:
+- Android using stack for managing the fragments.
+- A maze app will use a stack to do the contiguous operation.
+- Memory allocation uses stacks at the architectural level.
+
 ## Tree
 ![](tree.png)
 

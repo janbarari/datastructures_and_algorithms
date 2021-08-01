@@ -1,7 +1,6 @@
 package datastructure.stack
 
-/**
- *
- */
-interface Stack {
+interface Stack<T> {
+    fun push(element: T)
+    fun pop(): T?
 }
