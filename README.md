@@ -105,7 +105,7 @@ such as:
 
 Just like **LinkedList** the trees consists Node but the Node contains two child nodes.
 
-The topmost node in the tree is called the **root** of the tree. this node is the only node that has not parent.
+The topmost node in the tree is called the **root** of the tree. this node is the only node that has no parent.
 
 A node that has no child is called as **Leaf**.
 
