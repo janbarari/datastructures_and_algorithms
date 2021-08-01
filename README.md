@@ -84,7 +84,7 @@ LinkedList consists of Nodes and each node has two responsibility
 - Hold the reference to the next node, the **null** marks the end of the list.
 
 Pros:
-- LinkedList has O(1) time complexity for head first insertion but Array and ArrayList has O(n) time complexity
+- LinkedList has O(1) time complexity for head first insertion but **Array & ArrayList** has O(n) time complexity
 for it.
 - Dynamic data structure
 - No memory wastage
