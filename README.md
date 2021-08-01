@@ -80,8 +80,8 @@ options such as Array & ArrayList:
 - reliable performance characteristics
 
 LinkedList consists of Nodes and each node has two responsibility
-1- Hold a value
-2- Hold the reference to the next node, the **null** marks the end of the list.
+- Hold a value
+- Hold the reference to the next node, the **null** marks the end of the list.
 
 The big advantage of **LinkedList** versus to **Array** & **ArrayList**
 - LinkedList has O(1) time complexity for head first insertion but Array and ArrayList has O(n) time complexity
