@@ -1,6 +1,6 @@
 package datastructure.tree
 
-import list.ArrayListQueue
+import datastructure.queue.ArrayListQueue
 
 /**
  * The tree is a data structure of profound importance. It's used to tackle many recurring challenges

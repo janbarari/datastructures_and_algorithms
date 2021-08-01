@@ -5,8 +5,8 @@ plugins {
     application
 }
 
-group = "me.workstation"
-version = "1.0-SNAPSHOT"
+group = "io.github.janbarari.datastructures_and_algorithms"
+version = "Learning"
 
 repositories {
     mavenCentral()
