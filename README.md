@@ -92,7 +92,10 @@ for it.
 Cons:
 - As soon as you move from one node to another, you can't go back cause there is only has reference to the next node.
 - In LinkedList the elements aren't in contiguous blocks of memory. This could lead to more cache misses, which increase the access time.
+
 ## Tree
+![](tree.png)
+
 It's a data structure of profound importance. It's used to tackle many recurring challenges in software development. 
 
 such as: 
