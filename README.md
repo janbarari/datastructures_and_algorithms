@@ -83,10 +83,12 @@ LinkedList consists of Nodes and each node has two responsibility
 - Hold a value
 - Hold the reference to the next node, the **null** marks the end of the list.
 
-The big advantage of **LinkedList** versus to **Array** & **ArrayList**
+Pros:
 - LinkedList has O(1) time complexity for head first insertion but Array and ArrayList has O(n) time complexity
 for it.
-  
+- Dynamic data structure
+- No memory wastage
+
 Cons:
 - As soon as you move from one node to another, you can't go back cause there is only has reference to the next node.
 - In LinkedList the elements aren't in contiguous blocks of memory. This could lead to more cache misses, which increase the access time.
