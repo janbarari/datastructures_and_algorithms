@@ -109,6 +109,19 @@ Real world examples:
 - A maze app will use a stack to do the contiguous operation.
 - Memory allocation uses stacks at the architectural level.
 
+## Queue
+![](queue.jpg)
+
+A Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first.
+
+The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added.
+
+The core operation of **Queue**:
+- **enqueue**: Inserts an element at the back of the queue and returns true if the operation is successful.
+- **dequeue**: Removes the element at the front of the queue and returns it.
+- **isEmpty**: Checks if the queue is empty using the **count** property.
+- **peek**: Returns the element at the front of the queue without remove or manipulating it.
+
 ## Tree
 ![](tree.png)
 
