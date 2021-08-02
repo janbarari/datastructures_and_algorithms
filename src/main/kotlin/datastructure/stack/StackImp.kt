@@ -2,6 +2,22 @@ package datastructure.stack
 
 class StackImp<T>: Stack<T> {
 
+    companion object {
+
+        fun <T> create(items: Iterable<T>): Stack<T> {
+            val stack = StackImp<T>()
+            for (item in items) {
+                stack.push(item)
+            }
+            return stack
+        }
+
+        fun <T> stackOf(vararg elements: T): Stack<T> {
+            return StackImp.create(elements.asList())
+        }
+
+    }
+
     private val storage = arrayListOf<T>()
 
     /**
@@ -22,5 +38,15 @@ class StackImp<T>: Stack<T> {
     override fun toString(): String  {
         return storage.asReversed().toString()
     }
+
+    /**
+     * Get the top element of the stack
+     */
+    override fun peek(): T? {
+        return storage.lastOrNull()
+    }
+
+    override val count: Int
+        get() = storage.size
 
 }

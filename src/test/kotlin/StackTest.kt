@@ -22,4 +22,12 @@ class StackTest {
         println(stack)
     }
 
+    @Test
+    fun `initializing a stack from an array literal`() {
+        val stack = StackImp.stackOf(1, 2, 3, 4)
+        assertEquals("[4, 3, 2, 1]", stack.toString())
+        stack.pop()
+        assertEquals("[3, 2, 1]", stack.toString())
+    }
+
 }
